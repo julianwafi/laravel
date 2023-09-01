@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\SppModel;
+use Illuminate\Http\Request;
+use Excel;
+use App\Exports\SppExport;
+
 
 class Spp extends Controller
 {
@@ -42,5 +45,10 @@ class Spp extends Controller
         $pembayaran->update($request->except(['_token', '_method']));
         
         return redirect()->to(url('pembayaran'))->with('dataEdit','Data Berhasil Diedit');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new SppExport, 'spp-excel.xlsx');
     }
 }

@@ -11,9 +11,9 @@ class login extends Controller
     {
       if ($user = Auth::user()) {
             if ($user->level == 'admin') {
-                return redirect()->intended('admin');
+                return redirect()->intended('pembayaran');
             } elseif ($user->level == 'siswa') {
-                return redirect()->intendedd('siswa');
+                return redirect()->intended('siswa');
             }
         }
         return view('login');
@@ -31,7 +31,7 @@ class login extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             if ($user->level == 'admin') {
-                return redirect()->intended('admin');
+                return redirect()->intended('pembayaran');
             } elseif ($user->level == 'siswa') {
                 return redirect()->intended('siswa');
             }
@@ -39,7 +39,7 @@ class login extends Controller
         }
 
         return back()->withErorrs([
-            'gagal' => "Maaf username atau Password anda salah",
+            'gagal' => "Hadeh password lu salah cuy",
         ])->onlyInput('username');
     }
 

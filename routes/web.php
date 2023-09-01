@@ -28,6 +28,10 @@
     Route::delete('pembayaran/delete/{id}',[Spp::class, 'delete'])->name('pembayaran.delete');
     Route::get('pembayaran/edit/{id}', [Spp::class, 'edit'])->name('pembayaran.edit');
     Route::put('pembayaran/update/{id}', [Spp::class, 'update'])->name('pembayaran.update');
+    Route::get('/excel-export',[Spp::class, 'exportExcel']);
+    Route::get('/siswa',  [Siswa::class, 'index']);
+    Route::get('/generate-excel', 'ExcelController @index');
+
 
     Route::group(['middleware' => ['auth']], function() {
         Route::group(['middleware' => ['cekUserLogin:admin']], function() {

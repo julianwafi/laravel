@@ -3,16 +3,16 @@
 @section('konten')
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Pembayaran</h1>
+    <h1 class="h3 mb-2 text-grey-800">Data Pembayaran</h1>
     <p class="mb-4">Manajemen Spp | Inventory Spp</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">CRUD Laravel
-
-            <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#tambahData">Tambah Data</button>
-
+                <!-- <a href="{{url('excel-export')}}" class="m-2 btn btn-sm btn-success float-right">Donwload Excel</a> -->
+                <button class="btn btn-sm btn-primary float-right mt-1" data-toggle="modal" data-target="#tambahData">Tambah Data</button>
+                <a href="{{url('excel-export')}}" class="btn btn-sm btn-success float-right m-1" >Donwload Excel</a>
             </h6>
         </div>
 
@@ -39,13 +39,13 @@
                             <td>{{$row->nama}}</td>
                             <td>{{$row->tgl_bayar}}</td>
                             <td>{{$row->jumlah}}</td>
-                           <!-- Inside the loop -->
+                            <!-- Inside the loop -->
                             <td>
-                            <form action="{{ route('pembayaran.delete', $row->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                            </form>
+                                <form action="{{ route('pembayaran.delete', $row->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                </form>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModal{{$row->id}}">Edit</a>
@@ -136,7 +136,7 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    @if ($message = Session::get('dataTambah'))
+    @if($message = Session::get('dataTambah'))
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -154,5 +154,4 @@
         title: 'Data Barang Berhasil Ditambah'
     })
     @endif
-
 </script>
